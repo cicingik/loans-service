@@ -9,6 +9,12 @@ import (
 )
 
 type (
+	// LoanCreate ...
+	LoanCreate struct {
+		BorrowerID     uint64
+		LoanAmmount    float64 `json:"loan_amount"`
+		RatePercentage float64 `json:"rate_percentage"`
+	}
 	// LoanAssessment ...
 	LoanAssessment struct {
 		CurrentStatus string

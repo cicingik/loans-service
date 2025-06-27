@@ -28,6 +28,18 @@ func NewLoansService(
 	}, nil
 }
 
+// Create ...
+func (l *LoansService) Create(data entity.LoanCreate) error {
+	return l.lrepo.Create(&database.Loans{
+		Status:         "proposed",
+		Principal:      data.LoanAmmount,
+		BorrowerID:     data.BorrowerID,
+		RatePercentage: data.RatePercentage,
+		Rate:           data.LoanAmmount * (data.RatePercentage / 100),
+		ROI:            data.LoanAmmount * (data.RatePercentage / 100),
+	})
+}
+
 // UnAssessLoan ...
 func (l *LoansService) UnAssessLoan() ([]database.Loans, error) {
 	return l.lrepo.UnAssessLoan()
